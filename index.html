@@ -1,257 +1,539 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<title>CSSS: A brief introduction</title>
-	
-	<link href="slideshow.css" rel="stylesheet" />
-	<link href="theme.css" rel="stylesheet" />
-	<link href="talk.css" rel="stylesheet" />
-	<script src="prefixfree.min.js"></script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Making (and breaking) scope</title>
+
+<!-- Don't alter this, CSSS needs it to work -->
+<link href="slideshow.css" rel="stylesheet" />
+
+<!-- Theme-specific styles go here (themes can be reused in multiple talks) -->
+<link href="theme.css" rel="stylesheet" />
+
+<!-- Talk-specific styles go here -->
+<link href="talk.css" rel="stylesheet" />
+
+<!-- Take care of prefixes -->
+<script src="prefixfree.min.js"></script>
+
 </head>
-<body data-duration="10">
+<body data-duration="30">
+
 
 <header id="intro" class="slide">
-	<h1>
-		<object data="logo.svg" width="100%" type="image/svg+xml">
-			<img src="logo.png" alt="CSSS: CSS-based SlideShow System" />
-		</object>
-	</h1>
-	<p class="attribution">By Lea Verou</p>
+	<h1>Making
+		<span class="glitch-outer">
+			<span class="glitch delayed" data-text="and breaking">and breaking</span>
+		</span>
+		<span class="text-right">scope</span></h1>
+	<p class="attribution">By Jordan Gray</p>
 </header>
-<section>
-	<header class="slide">
-		<h1>Introduction</h1>
-	</header>
-	
-	<section class="slide" title="CSSS: Introduction">
-		<h2>What is it?</h2>
-		<p>A simple framework for building presentations with modern web standards</p>
-		<ul>
-			<li class="delayed">An HTML file contains the whole presentation</li>
-			<li class="delayed">Themes as CSS files</li>
-			<li class="delayed">JavaScript handles what CSS can't (keyboard shortcuts etc)</li>
-		</ul>
-	</section>
-	
-	<section class="slide">
-		<h2>History</h2>
-		<ul>
-			<li class="delayed">I had to create a presentation for my talk at <a href="http://front-trends.com">Front Trends 2010</a></li>
-			<li class="delayed">The only web-based presentation systems I knew of didn't fit my needs</li>
-			<li class="delayed">&hellip;so I rolled up my own</li>
-			<li class="delayed">FT2010 attendees asked me to release it</li>
-			<li class="delayed">and here it is! ;-)</li>
-		</ul>
-	</section>
-	
-	<section class="slide" id="navigation">
-		<h2>Navigation</h2>
-		<p>Only through keyboard for now :(</p>
-		<ul>
-			<li>→ or ↓ to advance to the next slide or incrementally displayed item</li>
-			<li>← or ↑ to go to the previous slide or incrementally displayed item</li>
-			<li>Ctrl* + → or Ctrl* + ↓ to jump to the next slide</li>
-			<li>Ctrl* + ← or Ctrl* + ↑ to jump to the previous slide</li>
-			<li>Home to go to the first slide, End to go to the last</li>
-			<li>Ctrl* + G to jump to an arbitrary slide (by slide number or identifier)</li>
-		</ul>
-		<p>* Ctrl or Shift actually. Only Shift works in Opera.</p>
-	</section>
-</section>
+
 
 <section>
 	<header class="slide">
-		<h1>Features</h1>
+		<h1>What is scope?</h1>
 	</header>
 	
 	<section class="slide">
-		<h2>Thumbnail view</h2>
-		<p>Press Ctrl+H (or Shift+H if you're in Opera) now.</p>
-		<p class="delayed">Cool, huh? You can press Ctrl+Shift+H to see all slides (warning: can be slow!)</p>
-	</section>
-	
-	<section class="slide">
-		<h2>Timer</h2>
-		<ul>
-			<li>Timer in the form of a progress bar on the top</li>
-			<li>Define the talk duration with the attribute <code>data-duration</code> on the <code>body</code></li>
-			<li>Style the timer and the end state with the selectors <code>#timer</code> and <code>#timer.end</code> respectively.</li>
+		<h2>Definition</h2>
+		<p>Where in your code you can access an <strong>identifier</strong> <span class="delayed persistent">(a <em>name</em> for something)</span></p>
+		<ul class="delayed">
+			<li>Variables</li>
+			<li>Functions</li>
+			<li>Arguments</li>
 		</ul>
 	</section>
-	
-	<section class="slide">
-		<h2>Presenter view</h2>
-		<p>This slide has presenter notes. They are only visible in presenter view (Ctrl+P or Shift+P).</p>
-		<p class="presenter-notes">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</section>
-	
-	<section class="slide">
-		<style scoped>
-			h2 {
-				font-size: 200%;
-				font-weight: bold;
-			}
-		</style>
-		<h2><code>&lt;style scoped /&gt;</code></h2>
-		<p>You can use the HTML5 <code>scoped</code> attribute on style elements in slides, to only style the current slide or inside sections that include multiple slides to style all of them and nothing else.</p>
-		<p>For example, inspect this slide and then run <code>$$('style[scoped]')[0].sheet.cssRules[0].selectorText</code> in the console to see how the original selector gets changed.</p>
-	</section>
-	
-	<section class="slide">
-		<h2>More features</h2>
-		<ul>
-			<li class="delayed">IDs are dynamically assigned by JavaScript&hellip;</li>
-			<li class="delayed">&hellip;but you can also assign your own, bringing the best of both worlds</li>
-			<li class="delayed">Incremental display of slide contents (just add <code>class="delayed"</code>)</li>
-			<li class="delayed">Slide scaling based on window size (size everything you want to be scalable in ems)</li>
-			<li class="delayed">Document.title changing according to slide title (fetched either from the <code>title</code> attribute or the slide's heading)</li>
-		</ul>
-	</section>
-	
-	<section class="slide">
-		<h2>Drawbacks</h2>
-		<ul>
-			<li>Only supports modern browsers. Why?
-				<ul>
-					<li>More lightweight</li>
-					<li>Easier to understand code</li>	
-					<li>It's a presentation, so the environment is controlled anyway</li>
-				</ul>
-			</li>
-			<li>No mouse click to advance to the next slide. I consider it annoying.</li>
-			<li>Doesn't work in mobile :(</li>
-		</ul>
-	</section>
-</section>
 
-<section>
-	<header class="slide">
-		<h1>Plugins</h1>
-	</header>
+	<section class="slide">
+		<h2>Example</h2>
+		<pre>var bestArtist = "Shakira";
+	
+function areTheyBest(artist) {
+	var isBest = artist.indexOf(bestArtist) > -1;
+
+	return isBest;
+}</pre>
+	</section>
 	
 	<section class="slide">
-		<h2>Plugin: CSS Snippets</h2>
-		<pre>new CSSSnippet(document.getElementById('snippet'));</pre>
+		<h2>Example 1: identifiers</h2>
+		<pre>var <mark data-markas="Identifier">bestArtist</mark> = "Shakira";
+	
+function <mark data-markas="Identifier">areTheyBest</mark>(<mark data-markas="Identifier">artist</mark>) {
+	var <mark class="below" data-markas="Identifier">isBest</mark> = <mark class="below" data-markas="Identifier">artist</mark>.indexOf(<mark data-markas="Identifier">bestArtist</mark>) > -1;
+
+	return <mark data-markas="Identifier">isBest</mark>;
+}</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Lexical scope</h2>
+		<p>Scope of an identifier depends on where it was <strong>declared</strong> <span class="delayed persistent">(first named)</span></p>
 		<ul>
-			<li>Dynamically edit CSS and reflect the results in any element's style
-				<ul>
-					<li>Which one? Specify a selector with the <code>data-subject</code> attribute or leave blank for the slide to be the subject</li>
-				</ul>
-			<li>Automatically prefixes CSS3 properties/values, when needed
-				<ul>
-					<li>Also does it with the style attribute (statically) if the element is not a text field (doesn't work in IE and Firefox 3.6)</li>
-				</ul>
-			</li>
-			<li>Textarea automatically adjusts rows/font-size on line break (use class <code>dont-adjust</code> to turn off)</li>
+			<li class="delayed"><code>var <em>identifier</em></code></li>
+			<li class="delayed"><code>function <em>identifier</em>(...)</code></li>
+			<li class="delayed"><code>function ...(<em>identifier</em>)</code></li>
 		</ul>
 	</section>
 	
 	<section class="slide">
-		<h2>CSS Snippets demo</h2>
-		<p>Edit the following CSS code:</p>
-		<textarea class="snippet">background-color:red;
-background-image: linear-gradient(red, #600)</textarea>
+		<h2>Example 1: identifiers</h2>
+		<pre>var <mark data-markas="Identifier">bestArtist</mark> = "Shakira";
+	
+function <mark data-markas="Identifier">areTheyBest</mark>(<mark data-markas="Identifier">artist</mark>) {
+	var <mark class="below" data-markas="Identifier">isBest</mark> = <mark class="below" data-markas="Identifier">artist</mark>.indexOf(<mark data-markas="Identifier">bestArtist</mark>) > -1;
+	
+	return <mark data-markas="Identifier">isBest</mark>;
+}</pre>
 	</section>
 	
-	<section class="slide" id="animation-demo">
-		<h2>CSS Snippets: raw CSS</h2>
-		<textarea class="snippet" data-raw>@keyframes rainbow {
-	from, to { background: red }
-	16% { background: yellow }
-	33% { background: green }
-	50% { background: aqua }
-	66% { background: blue }
-	83% { background: fuchsia }
+	<section class="slide">
+		<h2>Example 1: declared</h2>
+		<pre>var <mark data-markas="Declared" class="bright">bestArtist</mark> = "Shakira";
+	
+function <mark data-markas="Declared" class="bright">areTheyBest</mark>(<mark data-markas="Declared" class="bright">artist</mark>) {
+	var <mark data-markas="Declared" class="below bright">isBest</mark> = artist.indexOf(bestArtist) > -1;
+
+	return isBest;
+}</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Global scope</h2>
+		<ul>
+			<li class="delayed">Global scope is where everything starts out</li>
+			<li class="delayed">Identifiers declared in global scope can be accessed anywhere</li>
+			<li class="delayed">That includes from other scripts!</li>
+			<li class="delayed emphasis">Avoid declaring identifiers in global scope</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Example</h2>
+		<pre>var bestArtist = "Shakira";
+	
+function areTheyBest(artist) {
+	var isBest = artist.indexOf(bestArtist) > -1;
+
+	return isBest;
+}</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 1: global</h2>
+		<pre><span data-scope="global">var bestArtist = "Shakira";
+	
+function areTheyBest(<small class="blur">artist</small>) {
+	<small class="blur">var isBest = artist.indexOf(bestArtist) > -1;
+
+	return isBest;</small>
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 1: global</h2>
+		<pre><span data-scope="global">var <mark data-markas="global" class="scope-1">bestArtist</mark> = "Shakira";
+	
+function <mark data-markas="global" class="scope-1">areTheyBest</mark>(<small class="blur">artist</small>) {
+	<small class="blur">var isBest = artist.indexOf(bestArtist) > -1;
+
+	return isBest;</small>
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Function scope</h2>
+		<ul>
+			<li class="delayed">Functions are the only way to create new scope <strong class="delayed">&lt;cough&gt;liar&lt;/cough&gt;</strong></li>
+			<li class="delayed">Identifiers declared in a function can only be accessed inside that function</li>
+			<li class="delayed">Can be used to avoid exposing identifiers to global scope</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Example 1: global</h2>
+		<pre><span data-scope="global">var bestArtist = "Shakira";
+	
+function areTheyBest(artist) {
+	var isBest = artist.indexOf(bestArtist) > -1;
+
+	return isBest;
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 1: scope</h2>
+		<pre><span data-scope="global">var bestArtist = "Shakira";
+	
+function areTheyBest<span class="bracket">(</span><span class="scope">artist</span><span class="bracket">)</span> {
+	<span data-scope="areTheyBest">var isBest = artist.indexOf(bestArtist) > -1;
+
+return isBest;</span>
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 1: declared</h2>
+		<pre><span data-scope="global">var <mark data-markas="global" class="scope-1">bestArtist</mark> = "Shakira";
+	
+function <mark data-markas="global" class="scope-1">areTheyBest</mark><span class="bracket">(</span><span class="scope"><mark data-markas="areTheyBest" class="scope-2">artist</mark></span><span class="bracket">)</span> {
+	<span data-scope="areTheyBest">var <mark data-markas="areTheyBest" class="scope-2 below">isBest</mark> = artist.indexOf(bestArtist) > -1;
+
+return isBest;</span>
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 1: identifiers</h2>
+		<pre><span data-scope="global">var <mark class="scope-1">bestArtist</mark> = "Shakira";
+	
+function <mark class="scope-1">areTheyBest</mark><span class="bracket">(</span><span class="scope"><mark class="scope-2">artist</mark></span><span class="bracket">)</span> {
+	<span data-scope="areTheyBest">var <mark class="scope-2">isBest</mark> = <mark class="scope-2">artist</mark>.indexOf(<mark class="scope-1">bestArtist</mark>) > -1;
+
+return <mark class="scope-2">isBest</mark>;</span>
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>That&rsquo;s it!</h2>
+		<p>(At least, if you write good JS)</p>
+		<p class="delayed">These two rules work even for complicated examples!</p>
+	</section>
+
+	<section class="slide">
+		<h2>Example 2</h2>
+		<pre>function singer(name) {
+	return function(message) {
+		return name + ":" + message;
+	}
 }
 
-#animation-demo { animation: 30s rainbow infinite; }</textarea>
+var shakira = singer("Shakira");
+shakira("Ay amor!"); // ???</pre>
 	</section>
-	
+
 	<section class="slide">
-		<h2>Plugin: CSS Controls</h2>
+		<h2>Example 2: result</h2>
+		<pre>function singer(name) {
+	return function(message) {
+		return name + ":" + message;
+	}
+}
+
+var shakira = singer("Shakira");
+shakira("Ay amor!"); // "Shakira: Ay amor!"</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 2: scopes</h2>
+		<pre><span data-scope="global">function singer(<span class="scope">name</span>) {
+	<span data-scope="singer">return function(<span class="scope">message</span>) {
+	<span data-scope="anonymous">return name + ":" + message;</span>
+}</span>
+}
+
+var shakira = singer("Shakira");
+shakira("Ay amor!"); // "Shakira: Ay amor!"</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 2: declared</h2>
+		<pre><span data-scope="global">function <mark data-markas="global" class="scope-1">singer</mark>(<span class="scope"><mark data-markas="singer" class="scope-2">name</mark></span>) {
+	<span data-scope="singer">return function(<span class="scope"><mark data-markas="anonymous" class="scope-3">message</mark></span>) {
+	<span data-scope="anonymous">return name + ":" + message;</span>
+}</span>
+}
+
+var <mark data-markas="global" class="scope-1">shakira</mark> = singer("Shakira");
+shakira("Ay amor!"); // "Shakira: Ay amor!"</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 2: identifiers</h2>
+		<pre><span data-scope="global">function <mark class="scope-1">singer</mark>(<span class="scope"><mark class="scope-2">name</mark></span>) {
+	<span data-scope="singer">return function(<span class="scope"><mark class="scope-3">message</mark></span>) {
+	<span data-scope="anonymous">return <mark class="scope-2">name</mark> + ":" + <mark class="scope-3">message</mark>;</span>
+}</span>
+}
+
+var <mark class="scope-1">shakira</mark> = <mark class="scope-1">singer</mark>("Shakira");
+<mark class="scope-1">shakira</mark>("Ay amor!"); // "Shakira: Ay amor!"</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Functions in loops</h2>
+		<p>A lot of people have problems using functions in loops</p>
+		<p class="delayed"><strong>But not us!</strong> The same two rules apply.</p>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3</h2>
+		<pre>var elevator = [], counter = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = function() {
+		return 'You are on floor ' + counter;
+	}
+	counter ++;
+}
+
+elevator[4](); // ???</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: result</h2>
+		<pre>var elevator = [], counter = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = function() {
+		return 'You are on floor ' + counter;
+	}
+	counter ++;
+}
+
+elevator[4](); // "You are on floor 10"</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: scopes</h2>
+		<pre><span data-scope="global">var elevator = [], counter = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = function() {
+		<span data-scope="anonymous">return 'You are on floor ' + counter;</span>
+	}
+	counter ++;
+}
+
+elevator[4](); // "You are on floor 10"</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: declared</h2>
+		<pre><span data-scope="global">var <mark data-markas="global" class="scope-1">elevator</mark> = [], <mark data-markas="global" class="scope-1">counter</mark> = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = function() {
+		<span data-scope="anonymous">return 'You are on floor ' + counter;</span>
+	}
+	counter ++;
+}
+
+elevator[4](); // "You are on floor 10"</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: identifiers</h2>
+		<pre><span data-scope="global">var <mark class="scope-1">elevator</mark> = [], <mark class="scope-1">counter</mark> = 0;
+
+while (<mark class="scope-1">counter</mark> < 10) {
+	<mark class="scope-1">elevator</mark><span class="bracket">[</span> <mark class="scope-1">counter</mark> <span class="bracket">]</span> = function() {
+		<span data-scope="anonymous">return 'You are on floor ' + <mark class="scope-1">counter</mark>;</span>
+	}
+	<mark class="scope-1">counter</mark> ++;
+}
+
+<mark class="scope-1">elevator</mark>[4](); // "You are on floor 10"</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: fixed</h2>
+		<pre>var elevator = [], counter = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = (function(floor) {
+		return function() {
+			return 'You are on floor ' + floor;
+		};
+	})(counter);
+	counter ++;
+}</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: fixed</h2>
+		<pre><span data-scope="global">var elevator = [], counter = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = (function(<span class="scope">floor</span>) {
+		<span data-scope="anonymous#1">return function() {
+	<span data-scope="anonymous#2">return 'You are on floor ' + floor;</span>
+};</span>
+	})(counter);
+	counter ++;
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: fixed</h2>
+		<pre><span data-scope="global">var <mark data-markas="global" class="scope-1">elevator</mark> = [], <mark data-markas="global" class="scope-1">counter</mark> = 0;
+
+while (counter < 10) {
+	elevator[ counter ] = (function(<span class="scope"><mark data-markas="anonymo&hellip;#1" class="scope-2">floor</mark></span>) {
+		<span data-scope="anonymous#1">return function() {
+	<span data-scope="anonymous#2">return 'You are on floor ' + floor;</span>
+};</span>
+	})(counter);
+	counter ++;
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Example 3: fixed</h2>
+		<pre><span data-scope="global">var <mark class="scope-1">elevator</mark> = [], <mark class="scope-1">counter</mark> = 0;
+
+while (<mark class="scope-1">counter</mark> < 10) {
+	<mark class="scope-1">elevator</mark><span class="bracket">[</span> <mark class="scope-1">counter</mark> <span class="bracket">]</span> = (function(<span class="scope"><mark class="scope-2">floor</mark></span>) {
+		<span data-scope="anonymous#1">return function() {
+	<span data-scope="anonymous#2">return 'You are on floor ' + <mark class="scope-2">floor</mark>;</span>
+};</span>
+	})(<mark class="scope-1">counter</mark>);
+	<mark class="scope-1">counter</mark> ++;
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2>All done!</h2>
+		<p class="delayed">&hellip;right?</p>
+</section>
+
+<section>
+	<header class="slide">
+		<h1>Breaking scope</h1>
+	</header>
+
+	<section class="slide">
+		<h2><code>eval</code> is evil!</h2>
+		<p><code>eval</code> breaks these rules!</p>
 		<ul>
-			<li>Use sliders and other controls to adjust CSS values
+			<li class="delayed nonono">Can add identifiers to current scope</li>
+			<li class="delayed nonono">In strict mode, can add identifiers to global scope</li>
+			<li class="delayed nonono">In your code, can remove self-respect</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2><code>eval</code> example</h2>
+		<pre>var bestArtist = "Shakira";
+
+function evil(plan) {
+	eval(plan); // WHAT IS IT DOING?!?
+	return bestArtist;
+}
+
+evil("var bestArtist = 'Beyoncé';");
+// ?!? (I'm scared)</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>eval</code> example</h2>
+		<pre>var bestArtist = "Shakira";
+
+function evil(plan) {
+	eval(plan); // PLEASE THINK OF THE CHILDREN
+	return bestArtist;
+}
+
+evil("var bestArtist = 'Beyoncé';");
+// "Beyoncé" (OMG! What scope is this in?!)</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>eval</code> example</h2>
+		<pre>var <mark data-markas="LOL WHO CARES" class="scope-broken">bestArtist</mark> = "Shakira";
+
+function evil(plan) {
+	eval(plan); // PLEASE THINK OF THE CHILDREN
+	return <mark class="scope-broken">bestArtist</mark>;
+}
+
+evil("var bestArtist = 'Beyoncé';");
+// "Beyoncé" (OMG! What scope is this in?!)</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>with</code> is whiffy</h2>
+		<p><code>with</code> has good intentions, but it also breaks scope</p>
+		<ul>
+			<li class="delayed nonono">Looks for identifiers in properties of some object</li>
+			<li class="delayed nonono">
+				Can&rsquo;t predict where identifiers will be found
 				<ul>
-					<li>Which one? Specify a selector with the <code>data-subject</code> attribute or leave blank for the slide to be the subject</li>
-					<li>Specify style with <code>data-style</code> (use <code>{value}</code> where the result will be)</li>
+					<li class="delayed">Breaks lexical scope!</li>
+					<li class="delayed">Breaks a lot of optimisations too. :(</li>
 				</ul>
-			<li>Automatically prefixes CSS3 properties/values, when needed</li>
+			</li>
 		</ul>
 	</section>
-	
-	<section class="slide" id="css-controls-demo">
-		<h2>CSS Controls demo</h2>
-		<label>Slide lightness: 
-			<input type="range" min="0" max="255" value="128" data-style="background-color:rgb({value}, {value}, {value});" class="css-control" />
-		</label>
-		<label>
-			border-width:
-			<input type="number" min="0" max="60" value="30" data-style="border-width: {value}px;" class="css-control" size="5" />
-		</label>
-		<label>
-			font-family:
-			<select data-style="font-family: {value};" class="css-control">
-				<option selected>sans-serif</option>
-				<option>Georgia, serif</option>
-				<option>Consolas, monospace</option>
-				<option>'Trebuchet MS', sans-serif</option>
-			</select>
-		</label>
-	</section>
-	
+
 	<section class="slide">
-		<h2>Plugin: Code highlight</h2>
-		<ul>
-			<li>Syntax highlighting for every <code>&lt;code&gt;</code> element with a <code>lang</code> attribute.</li>
-			<li>Only highlights when the slide becomes active, for performance</li>
-			<li>Currently only supports JavaScript, but it's easy to add any language</li>
-			<li>Styling done through easy to understand classes like <code>.string</code> or <code>.comment</code></li>
-		</ul>
+		<h2><code>with</code> example</h2>
+		<pre>var bestArtist = "Shakira";
+var kiran = { bestArtist : "Beyoncé" };
+
+console.log(bestArtist); // ???
+
+with (kiran) {
+	console.log(bestArtist); // ???
+}</pre>
 	</section>
-	
+
 	<section class="slide">
-		<h2>Code highlight example</h2>
-		<pre><code lang="javascript">// Comment
-document.addEventListener('DOMAttrModified',function(e) {
-  var node = e.target, attr = e.attrName;
-  if(/^input$/i.test(node.nodeName) 
-    &amp;&amp; (attr === 'placeholder' || attr === 'value')
-    || foo > 5)
-      Placeholder.update(node);
-}, false);</code></pre>
+		<h2><code>with</code> example</h2>
+		<pre>var bestArtist = "Shakira";
+var kiran = { bestArtist : "Beyoncé" };
+
+console.log(bestArtist); // "Shakira" (right)
+
+with (kiran) {
+	console.log(bestArtist); // "Shakira" (wrong)
+}</pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>with</code> example</h2>
+		<pre><span data-scope="global">var bestArtist = "Shakira";
+var kiran = { bestArtist : "Beyoncé" };
+
+console.log(bestArtist); // "Shakira" (right)
+
+with (kiran) {
+	console.log(<mark class="scope-broken">bestArtist</mark>); // "Shakira" (wrong)
+}</span></pre>
+	</section>
+
+	<section class="slide">
+		<h2><code>with</code> example</h2>
+		<pre><span data-scope="global">var bestArtist = "Shakira";
+var kiran = { bestArtist : "Beyoncé" };
+
+console.log(bestArtist); // "Shakira" (right)
+
+with (kiran) {
+	<span data-scope="kiran + shakira&hellip;?" class="scope-broken">console.log(<mark class="scope-broken">bestArtist</mark>); // "Shakira" (wrong)</span>
+}</span></pre>
 	</section>
 </section>
-<footer class="slide" title="The End">
-	<h2>Thank you!</h2>
-	<p>Get it or contribute at <a href="http://github.com/LeaVerou/CSSS">http://github.com/LeaVerou/CSSS</a></p>
-	<p>Credits:</p>
-	<ul>
-		<li><a href="http://lukeroberts.us/2008/12/wallpaper-colourful-wood/">Colored wood background by Luke Roberts</a></li>
-		<li>The name CSSS is actually inspired by S5, as you could probably guess ;-)</li>
-		<li>A big thanks to the community at Github for various contributions to this project</li>
-	</ul>
+
+<footer class="slide">
+	<h2>Thank you</h2>
+	<p class="delayed">Coming soon: scope in ECMAScript <strong>(Difficulty: hardester)</strong></p>
+	<p class="delayed">Time for questions!</p>
+	<p class="delayed">(PS: any volunteers!?)</p>
 </footer>
 
 <script src="slideshow.js"></script>
+
+<!-- Uncomment the plugins you need
 <script src="plugins/css-edit.js"></script>
 <script src="plugins/css-snippets.js"></script>
 <script src="plugins/css-controls.js"></script>
 <script src="plugins/code-highlight.js"></script>
-<script>
-var slideshow = new SlideShow();
-
-var snippets = document.querySelectorAll('.snippet');
-for(var i=0; i<snippets.length; i++) {
-	new CSSSnippet(snippets[i]);
-}
-
-var cssControls = document.querySelectorAll('.css-control');
-for(var i=0; i<cssControls.length; i++) {
-	new CSSControl(cssControls[i]);
-}
-</script>
+-->
+<script>var slideshow = new SlideShow();</script>
 	
 </body>
 </html>

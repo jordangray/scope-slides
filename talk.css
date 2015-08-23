@@ -1,41 +1,264 @@
 #intro {
-	background: rgba(0,0,0,.7);
-	padding: 0;
-	border: 0;
+	background: transparent;
 }
 
 #intro h1 {
-	width: 60%;
+	width: 70%;
 	min-height: 500px;
-	margin: 5% auto 0;
+	margin: 3% auto 0;
+	font-size: 8vw;
 }
 
-#intro .attribution {
-	font-family: Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: center;
-	font-size: 100%;
-	line-height: .3;
-	color: rgba(0,0,0,.7);
-	text-shadow: none;
-	background: url(img/rainbow-wood.jpg) bottom;
-	padding:.6em 0 0;
-	overflow: hidden;
-}
-
-
-#css-controls-demo label {
+.glitch-outer {
 	display: block;
+	border: 3px solid white;
+	margin: 0 auto;
+	position: relative;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio:0) {
-/* hack to avoid using the Object element in Safari/WebKit, due to WebKit Bug 27190 */
-	object[type="image/svg+xml"] {
-		display: none;
-	}
-	
-	#intro h1 {
-		background: url(logo.svg) no-repeat center;
-		background-size:100% auto;
-	}
+.glitch {
+	color: white;
+	background: black;
+	display: block;
+	font-size: 10vw;
+	padding: 0.3vw;
+	text-align: center;
+}
+
+.glitch:before,
+.glitch:after {
+	color: white;
+	content: attr(data-text);
+	text-align: center;
+	text-shadow: none;
+
+	clip: rect(0, 9999px, 0, 0);
+	height: 100%;
+	width: 100%;
+	padding: 0.3vw 0;
+	overflow: hidden;
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+@keyframes noise-1 {
+  0%    { clip: rect( 1.2vw, 9999px,  8.2vw, 0); }
+  5%    { clip: rect( 4.9vw, 9999px, 13.7vw, 0); }
+  10%   { clip: rect(  .3vw, 9999px,  4.3vw, 0); }
+  15.0% { clip: rect( 6.3vw, 9999px,  4.2vw, 0); }
+  20%   { clip: rect( 1.1vw, 9999px, 11.9vw, 0); }
+  25%   { clip: rect( 4.1vw, 9999px,  9.1vw, 0); }
+  30.0% { clip: rect( 9.2vw, 9999px,  9.1vw, 0); }
+  35%   { clip: rect( 5.8vw, 9999px,   .4vw, 0); }
+  40%   { clip: rect(  .7vw, 9999px,  7.3vw, 0); }
+  45%   { clip: rect(  .1vw, 9999px,  7.1vw, 0); }
+  50%   { clip: rect( 4.9vw, 9999px, 11.5vw, 0); }
+  55.0% { clip: rect( 5.3vw, 9999px,  6.2vw, 0); }
+  60.0% { clip: rect( 1.1vw, 9999px,  4.7vw, 0); }
+  65%   { clip: rect( 7.1vw, 9999px,   .6vw, 0); }
+  70%   { clip: rect( 2.4vw, 9999px,  6.9vw, 0); }
+  75%   { clip: rect( 2.2vw, 9999px,  7.1vw, 0); }
+  80%   { clip: rect( 5.0vw, 9999px,  1.8vw, 0); }
+  85.0% { clip: rect( 8.7vw, 9999px, 11.4vw, 0); }
+  90%   { clip: rect( 3.2vw, 9999px,  9.1vw, 0); }
+  95%   { clip: rect(  .6vw, 9999px,  8.6vw, 0); }
+  100%  { clip: rect( 7.5vw, 9999px, 13.2vw, 0); }
+}
+
+.glitch:after {
+	animation: noise-1 2s infinite linear alternate-reverse;
+	left: 3px;
+	text-shadow: 1px 0 blue;
+}
+
+@keyframes noise-2 {
+  0%    { clip: rect(3.3vw, 9999px,  5.5vw, 0); }
+  5%    { clip: rect(5.4vw, 9999px,  8.1vw, 0); }
+  10%   { clip: rect(3.6vw, 9999px,  1.2vw, 0); }
+  15.0% { clip: rect( .5vw, 9999px,  7.8vw, 0); }
+  20%   { clip: rect(9.3vw, 9999px, 12.5vw, 0); }
+  25%   { clip: rect(2.8vw, 9999px,  7.6vw, 0); }
+  30.0% { clip: rect(9.4vw, 9999px,  7.6vw, 0); }
+  35%   { clip: rect(9.6vw, 9999px, 13.0vw, 0); }
+  40%   { clip: rect(8.2vw, 9999px,  9.7vw, 0); }
+  45%   { clip: rect(6.1vw, 9999px,  9.5vw, 0); }
+  50%   { clip: rect(1.7vw, 9999px,  4.4vw, 0); }
+  55.0% { clip: rect(8.8vw, 9999px,  7.1vw, 0); }
+  60.0% { clip: rect(6.3vw, 9999px, 11.0vw, 0); }
+  65%   { clip: rect(2.9vw, 9999px,  5.6vw, 0); }
+  70%   { clip: rect(1.9vw, 9999px,  2.1vw, 0); }
+  75%   { clip: rect(9.0vw, 9999px,  9.5vw, 0); }
+  80%   { clip: rect( .8vw, 9999px,  8.1vw, 0); }
+  85.0% { clip: rect(9.1vw, 9999px, 11.3vw, 0); }
+  90%   { clip: rect(3.1vw, 9999px,  4.5vw, 0); }
+  95%   { clip: rect(8.6vw, 9999px,  6.8vw, 0); }
+  100%  { clip: rect(2.8vw, 9999px,  1.7vw, 0); }
+}
+
+.glitch:before {
+	animation: noise-2 3s infinite linear alternate-reverse;
+	left: -3px;
+	text-shadow: -1px 0 red;
+}
+
+.text-right {
+	display: block;
+	text-align: right;
+}
+
+p.attribution {
+	font-size: 2vw;
+	letter-spacing: 0.2em;
+}
+
+mark {
+	background: #000;
+	outline: 5px solid #000;
+	font-weight: bold;
+	position: relative;
+	z-index: 2;
+}
+
+[data-markas]:before {
+	background: #000;
+	content: attr(data-markas);
+	position: absolute;
+	font-size: 50%;
+	bottom: 100%;
+	left: -5px;
+	right: -5px;
+	padding: 0 5px;
+	line-height: 1em;
+}
+
+mark:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	top: -5px;
+	bottom: -5px;
+	left: -5px;
+	right: -5px;
+	outline: 1px solid #fff;
+}
+
+[data-markas]:after {
+	content: ' ';
+	top: -0.5em;
+}
+
+[data-markas].below:before {
+	bottom: auto;
+	top: 100%;
+}
+
+[data-markas].below:after {
+	bottom: auto;
+	top: -5px;
+	bottom: -0.5em;
+}
+
+.bright {
+	background: hsl(330, 70%, 50%);
+	outline-color: hsl(330, 70%, 50%);
+}
+
+.bright:before {
+	background: hsl(330, 70%, 50%);
+}
+
+.blur {
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+}
+
+.bracket {
+	position: relative;
+	z-index: 1;
+}
+
+[data-scope],
+.scope {
+	background: hsl(30, 60%, 50%);
+	outline: 5px solid hsl(30, 60%, 50%);
+	position: relative;
+	display: inline-block;
+}
+
+[data-scope]:before {
+	background: hsl(30, 60%, 50%);
+	content: attr(data-scope);
+	position: absolute;
+	font-size: 60%;
+	font-weight: bold;
+	bottom: 100%;
+	right: -5px;
+	padding: 10px 15px;
+	line-height: 1em;
+}
+
+[data-scope] {
+	min-width: 100%;
+}
+
+.scope-1,
+.scope-1:before {
+	background: hsl(30, 90%, 50%);
+	outline-color: hsl(30, 90%, 50%);
+}
+
+[data-scope] [data-scope] {
+	min-width: auto;
+	margin-right: 15px;
+}
+
+[data-scope] [data-scope],
+[data-scope] .scope {
+	background: hsl(70, 60%, 45%);
+	outline-color: hsl(70, 60%, 45%);
+}
+
+[data-scope] [data-scope]:before {
+	background: hsl(70, 60%, 45%);
+}
+
+.scope-2,
+.scope-2:before {
+	background: hsl(70, 90%, 45%);
+	outline-color: hsl(70, 90%, 45%);
+}
+
+[data-scope] [data-scope] [data-scope],
+[data-scope] [data-scope] .scope {
+	background: hsl(110, 60%, 45%);
+	outline-color: hsl(110, 60%, 45%);
+}
+
+[data-scope] [data-scope] [data-scope]:before {
+	background: hsl(110, 60%, 45%);
+}
+
+.scope-3,
+.scope-3:before {
+	background: hsl(110, 90%, 45%);
+	outline-color: hsl(110, 90%, 45%);
+}
+
+@-webkit-keyframes rainbow {
+  0%   { background: red;    outline-color: red;    } 
+  17%  { background: orange; outline-color: orange; }
+  33%  { background: yellow; outline-color: yellow; }
+  50%  { background: green;  outline-color: green;  }
+  67%  { background: blue;   outline-color: blue;   }
+  83% { background: purple; outline-color: purple; }
+}
+
+.scope-broken,
+.scope-broken:before {
+	background: red !important;
+	outline-color: red !important;
+	animation: rainbow 4s infinite linear;
 }

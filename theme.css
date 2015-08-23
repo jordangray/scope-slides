@@ -26,8 +26,8 @@ section > header.slide > h1 {
 }
 
 html {
-	background: black url(img/rainbow-wood.jpg) bottom center;
-	background-size: cover;
+  -background: linear-gradient(90deg, #C9FFBF 10%, #FFAFBD 90%);
+   background: linear-gradient(90deg, #70e1f5 10%, #ffd194 90%);     
 }
 
 body {
@@ -52,12 +52,10 @@ code, pre, style, textarea, input {
 }
 
 code {
-	padding:.2em .2em .1em;
+	padding: .1em .2em .1em;
 	white-space: nowrap;
-	border-radius:.2em;
 	border: 1px solid rgba(0,0,0,0.5);
 	background: rgba(0,0,0,0.25);
-	box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 12px rgba(255,255,255,0.15), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
 }
 
 pre, style, textarea {
@@ -80,6 +78,10 @@ textarea {
 	box-sizing: border-box;
 }
 
+i, em {
+	font-style: italic;
+}
+
 strong, b {
 	font-weight:bold;	
 }
@@ -94,7 +96,7 @@ strong, b {
 	background-clip: padding-box;
 	text-shadow:.05em .05em .1em rgba(0,0,0,.4);
 	color: white;
-	border:30px solid transparent;
+	border: 30px solid transparent;
 }
 
 #indicator {
@@ -111,8 +113,8 @@ strong, b {
 	
 	.slide p,
 	.slide li {
-		font-weight: bold;
-		letter-spacing: -.03em;
+		/*font-weight: bold;
+		letter-spacing: -.03em;*/
 	}
 		
 	.slide > ul {
@@ -139,7 +141,13 @@ strong, b {
 		.slide > ul > li:before {
 			content:'\2714';
 			color: #a0c12c;
-			padding-right: .2em;
+			padding-right: .5em;
+		}
+
+		.slide > ul > li.nonono:before {
+			content:'\2718';
+			color: #b22;
+			padding-right: .5em;
 		}
 		
 			.slide li li:before {
@@ -155,12 +163,13 @@ section > header.slide {
 	section > header.slide > h1 {
 		position: absolute;
 		top: 50%;
+		transform: translateY(-50%);
 		left: 0;
 		right: 0;
-		margin-top: -.6em;
 		font-size: 400%;
-		line-height: 1;
+		line-height: 1.4;
 		text-align: center;
+		padding: 0 1em;
 	}
 
 .slide .emphasis {
@@ -182,21 +191,20 @@ section > header.slide {
 }
 
 .slide .emphasis::before {
-	content: '\279C';
+	content: '!';
 	color: rgba(255,255,255,.5);
 	float: left;	
-	width: .75em;
+	width: 1em;
 	height: 0;
-	padding: .45em 0 .3em;
+	padding: .5em 0 .5em;
 	margin: -.2em .2em 0 -.25em;
 	border: .12em solid;
 	text-align: center;
 	line-height: 0;
-	font-size: 120%;
+	font-size: 100%;
 	font-family: inherit;
 	text-shadow: none;
-	border-radius:999px;
-	transform: rotate(45deg);
+	border-radius:50%;
 }
 
 .attribution {

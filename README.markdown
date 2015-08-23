@@ -1,5 +1,5 @@
-# CSSS
-### CSS-based SlideShow System
+# Making and breaking scope
 
-Warning: Only works in latest Firefox, Opera, Safari or Chrome.
-For more information, see the [sample slideshow](http://lea.verou.me/csss/sample-slideshow.html) 
+Presentation given to colleagues at Experian.
+
+Warning: Only works in latest Firefox, Opera, Safari or Chrome. Slides created using Lea Verou's CSSS.
