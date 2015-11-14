@@ -489,7 +489,7 @@ var kiran = { bestArtist : "Beyoncé" };
 console.log(bestArtist); // "Shakira" (right)
 
 with (kiran) {
-	console.log(bestArtist); // "Shakira" (wrong)
+	console.log(bestArtist); // "Beyoncé" (wrong)
 }</pre>
 	</section>
 
@@ -501,7 +501,7 @@ var kiran = { bestArtist : "Beyoncé" };
 console.log(bestArtist); // "Shakira" (right)
 
 with (kiran) {
-	console.log(<mark class="scope-broken">bestArtist</mark>); // "Shakira" (wrong)
+	console.log(<mark class="scope-broken">bestArtist</mark>); // "Beyoncé" (wrong)
 }</span></pre>
 	</section>
 
@@ -513,7 +513,7 @@ var kiran = { bestArtist : "Beyoncé" };
 console.log(bestArtist); // "Shakira" (right)
 
 with (kiran) {
-	<span data-scope="kiran + shakira&hellip;?" class="scope-broken">console.log(<mark class="scope-broken">bestArtist</mark>); // "Shakira" (wrong)</span>
+	<span data-scope="kiran + global&hellip;?" class="scope-broken">console.log(<mark class="scope-broken">bestArtist</mark>); // "Beyoncé" (wrong)</span>
 }</span></pre>
 	</section>
 </section>
